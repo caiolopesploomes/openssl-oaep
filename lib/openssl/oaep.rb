@@ -12,8 +12,8 @@ module OpenSSL
         public_encrypt(padded, OpenSSL::PKey::RSA::NO_PADDING)
       end
 
-      def private_decrypt_oaep(str, label = '', md = nil, mgf1md = nil)
-        padded = private_decrypt(str, OpenSSL::PKey::RSA::NO_PADDING)
+      def private_decrypt_oaep(str, label = '', padding = OpenSSL::PKey::RSA::NO_PADDING, md = nil, mgf1md = nil)
+        padded = private_decrypt(str, padding)
         PKCS1.check_oaep_mgf1(padded, label, md, mgf1md)
       end
     end
